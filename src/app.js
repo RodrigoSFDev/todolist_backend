@@ -1,8 +1,10 @@
 const express = require('express');
+const { task } = require('./routes');
+const connectToDb = require('./database/db');
 const app = express();
 
-app.get('/', (_request, response) => {
-  response.send("Boas vindas ao meu app!");
-});
+app.use(express.json());
+connectToDb();
 
+app.use('/task', task);
 module.exports = app;
